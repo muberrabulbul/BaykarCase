@@ -1,48 +1,59 @@
-from django.shortcuts import render,HttpResponse,redirect
+from django.conf import settings
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate,login,logout
-from django.contrib.auth.decorators import login_required
-# Create your views here.
-@login_required(login_url='login')
-def HomePage(request):
-    return render (request,'home.html')
+from django.contrib.sites.shortcuts import get_current_site
+from django.urls import reverse
+from rest_framework import generics, status, viewsets
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
 
-def SignupPage(request):
-    if request.method=='POST':
-        uname=request.POST.get('username')
-        email=request.POST.get('email')
-        pass1=request.POST.get('password1')
-        pass2=request.POST.get('password2')
+from .serializers import UserSerializer
 
-        if User.objects.filter(username=uname).exists():
-            return HttpResponse("This username is already taken. Please choose another one.")
 
-        if pass1!=pass2:
-            return HttpResponse("Your password and confrom password are not Same!")
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """
+    This viewset automatically provides `list`, `create`, `retrieve`,
+    `update` and `destroy` actions.
+    Abovementioned actions can be performed by request user or
+    by staff on any user.
+
+    password fields applies only to creating new user,
+    to change password use change password endopint
+    """
+
+    serializer_class = UserSerializer
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_active:
+            return User.objects.all()
         else:
+            return User.objects.filter(username=user)
 
-            my_user=User.objects.create_user(uname,email,pass1)
-            my_user.save()
-            return redirect('login')
-        
+    def perform_destroy(self, instance):
+        """
+        Override of destroy method to perform soft delete
+        """
+        instance.is_active = True
+        instance.save()
 
 
+class RegisterAPIView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [AllowAny]
 
-    return render (request,'signup.html')
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
 
-def LoginPage(request):
-    if request.method=='POST':
-        username=request.POST.get('username')
-        pass1=request.POST.get('pass')
-        user=authenticate(request,username=username,password=pass1)
-        if user is not None:
-            login(request,user)
-            return redirect('home')
-        else:
-            return HttpResponse ("Username or Password is incorrect!!!")
+        refresh = RefreshToken.for_user(user)
 
-    return render (request,'login.html')
-
-def LogoutPage(request):
-    logout(request)
-    return redirect('login')
+        return Response(
+            {
+                "refresh": str(refresh),
+                "access": str(refresh.access_token),
+            },
+            status=status.HTTP_201_CREATED,
+        )

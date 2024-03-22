@@ -8,6 +8,7 @@ __pycache__/
 
 # 
 virtualenv/
+migrations/
 
 # Distribution / packaging
 .Python
