@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "baykaraccounts.apps.BaykarAccountsConfig",
     "ihas",
     "category",
+    "rental",
     "rest_framework_simplejwt.token_blacklist",
     "drf_yasg",
     "django_filters",
@@ -57,8 +58,7 @@ INSTALLED_APPS = [
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
-        "rest_framework.authentication.SessionAuthentication",
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
     ),
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"],
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
@@ -109,7 +109,7 @@ WSGI_APPLICATION = "baykarcase.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "baykardb",
+        "NAME": "bdb",
         "USER": "postgres",
         "PASSWORD": "mypassword.",
         "HOST": "127.0.0.1",

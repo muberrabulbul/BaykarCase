@@ -8,6 +8,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from baykaraccounts import views as accounts_views
 from category import views as category_views
+from rental import views as rentals_views
 from ihas import views as ihas_views
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -32,6 +33,8 @@ router.register(r"categories", category_views.CategoryViewSet)
 router.register(r"ihas", ihas_views.IHAViewSet)
 router.register(r"iha-photos", ihas_views.IHAPhotoViewSet)
 router.register(r"users", accounts_views.UserViewSet, basename="users")
+
+router.register(r"rentals", rentals_views.RentalViewSet, basename="rentals")
 
 
 urlpatterns = [
