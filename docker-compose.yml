@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  baykarcase:
+    container_name: baykarcase
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - PG_USER=postgres
+      - PG_PASSWORD=mypassword.
+      - PG_DB=baykardb
+      - PG_HOST=baykardb
+      - PG_PORT=5432
+    depends_on:
+      - baykardb
+  baykardb:
+    container_name: baykardb
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mypassword.
+      - POSTGRES_DB=baykardb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}
