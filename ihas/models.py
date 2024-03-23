@@ -30,7 +30,7 @@ class IHA(models.Model):
     day_price = models.DecimalField(max_digits=6, decimal_places=2)
 
     def __str__(self):
-        return "{} {} {}".format(self.title, self.brand, self.model)
+        return "{}".format(self.title)
 
 
 class IHAPhoto(models.Model):

@@ -19,7 +19,9 @@ class IHAPhotoSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class IHASerializer(serializers.ModelSerializer):
-    category = serializers.SerializerMethodField()
+    category_id = serializers.PrimaryKeyRelatedField(
+        source="category", queryset=Category.objects.all(), write_only=True
+    )
     photos = IHAPhotoSerializer(many=True, read_only=True)
 
     class Meta:
@@ -29,7 +31,7 @@ class IHASerializer(serializers.ModelSerializer):
             "title",
             "url",
             "brand",
-            "category",
+            "category_id",
             "serial_number",
             "model",
             "weight",
