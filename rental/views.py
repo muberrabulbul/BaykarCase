@@ -20,7 +20,7 @@ class RentalViewSet(viewsets.ModelViewSet):
     serializer_class = RentalSerializer
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    # filterset_fields = ["rental_start", "rental_end", "created"]
+    filterset_fields = ["rental_start", "rental_end", "created"]
     ordering_fields = ["rental_start", "rental_end"]
 
     def get_queryset(self):
