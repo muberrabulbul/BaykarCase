@@ -1,5 +1,5 @@
 # BaykarCase
-Bu proje Baykar tarafından verilen bir Vaka çalışması için geliştirilmiştir. Amacı, Django web çerçevesini kullanarak bir IHA kiralama platformu oluşturmaktır.
+Bu proje Baykar tarafından verilen bir Vaka çalışması için geliştirilmiştir. Amacı, Django web çerçevesini kullanarak bir IHA kiralama platformu oluşturmaktır. **Proje için hazırladığım dökümantasyon `docs` klasörü altında yer almaktadır.**
 
 ## Teknolojiler
 * Python 3.9
