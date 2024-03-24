@@ -11,7 +11,7 @@ Bu proje Baykar tarafından verilen bir Vaka çalışması için geliştirilmiş
 ## Kurulum
 
 ### Yerel Makineye Kurulum
-Bu proje, Python 3.9 sürümünü gerektirir. Bağımlılıklar Poetry aracılığıyla yönetilir.
+Bu proje, Python 3.9 sürümünü gerektirir. Bağımlılıklar Docker aracılığıyla yönetilir.
 
 Gereksinimleri Kurma
 Projeyi çalıştırmak için gereksinimleri kurmak için aşağıdaki adımları izleyin:
