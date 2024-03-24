@@ -33,5 +33,10 @@ Sunucuyu Çalıştırma
 
 ` docker compose up baykarcase `
 
+Yerel makinenizde bu projeyi çalıştırmak için gereken adımları tamamladınız. 🚀 
 
-Yerel makinenizde bu projeyi çalıştırmak için gereken adımları tamamladınız. 🚀
+Proje bir demo projesi olduğu için özel bir sunucu kiralanmadı. Bu sebeple varsayılan adres `http://0.0.0.0`'dır. Eğer projeyi Docker Compose ile ayağa kaldırıp test etmek istiyorsanız, proje ayağa kalktıktan sonra tarayıcınızda başlangıç noktası olarak şu adresi kullanabilirsiniz: 
+
+`http://localhost:8000/register/`
+
+Bu adresle uygulamaya erişebilirsiniz. 🚀
