@@ -1,7 +1,6 @@
-from datetime import date, datetime
+from datetime import datetime
 
 from ihas.models import IHA
-from ihas.api.serializers import IHASerializer
 from django.utils import timezone
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError

@@ -1,6 +1,7 @@
 from django.contrib.auth import password_validation as validators
 from django.contrib.auth.models import User
 from django.core import exceptions
+from django.contrib.auth import authenticate
 
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -84,3 +85,19 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
             validated_data.pop("password")
 
         return super(UserSerializer, self).update(instance, validated_data)
+
+
+class LoginSerializer(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
+    def validate(self, attrs):
+        username = attrs.get("username")
+        password = attrs.get("password")
+
+        user = authenticate(username=username, password=password)
+
+        if not user:
+            raise serializers.ValidationError("Kullanıcı adı veya şifre yanlış.")
+
+        return attrs

@@ -2,7 +2,6 @@ from rental.models import Rental
 from django.http import Http404
 from rest_framework.generics import ListAPIView
 
-from django.shortcuts import redirect
 from ihas.models import IHA
 from ihas.api.serializers import IHASerializer
 
@@ -10,9 +9,6 @@ from rest_framework.permissions import AllowAny
 from rest_framework.decorators import permission_classes
 
 from .serializers import RentalSerializer
-
-
-from ihas.api.serializers import IHASerializer
 
 
 @permission_classes((AllowAny,))

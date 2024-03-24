@@ -1,4 +1,5 @@
-"""Baykar IHA Rental URL Configuration
+"""
+Baykar IHA Rental URL Configuration
 """
 
 from django.conf import settings
@@ -10,13 +11,12 @@ from baykaraccounts import views as accounts_views
 from category import views as category_views
 from rental import views as rentals_views
 from ihas import views as ihas_views
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from rest_framework_simplejwt.views import TokenRefreshView
+
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -41,7 +41,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include(router.urls)),
     path("register/", accounts_views.RegisterAPIView.as_view(), name="register"),
-    path("login/", TokenObtainPairView.as_view(), name="login"),
+    path("login/", accounts_views.CustomLoginView.as_view(), name="login"),
     path("login/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path(
         "swagger-doc/",

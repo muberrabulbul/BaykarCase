@@ -1,11 +1,9 @@
-from django.shortcuts import render
 from rest_framework.filters import OrderingFilter
-from django_filters.rest_framework import DjangoFilterBackend, FilterSet
-from rest_framework import filters, mixins, viewsets
-from rest_framework.permissions import IsAdminUser, IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from .models import Rental
-from .models import IHA
 from .api.serializers import RentalSerializer
 
 

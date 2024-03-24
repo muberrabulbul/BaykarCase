@@ -87,7 +87,7 @@ ROOT_URLCONF = "baykarcase.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["templates"],
+        "DIRS": [os.path.join(BASE_DIR, "templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -155,9 +155,17 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
+STATICFILES_DIRS = ("static",)
+
 STATIC_ROOT = "staticfiles"
 
-STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = "/static"
+
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+)
+
 
 MEDIA_URL = "/media/"
 
@@ -167,8 +175,6 @@ MEDIA_ROOT = "media"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-# E-mail sesttings
 
 
 # CORS

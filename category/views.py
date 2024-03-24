@@ -1,11 +1,4 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.shortcuts import render
-from rest_framework import mixins, viewsets
-from rest_framework.decorators import api_view
-from rest_framework.permissions import AllowAny, IsAdminUser
-
+from rest_framework import viewsets
 from .models import Category
 from .permissions import IsAdminUserOrReadOnly
 from .api.serializers import CategorySerializer
@@ -28,7 +21,7 @@ class CategoryViewSet(viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = [
         "category",
-    ]  # Specify the fields you want to search on
+    ]
 
     def filter_queryset(self, queryset):
         filtered_queryset = super().filter_queryset(queryset)
