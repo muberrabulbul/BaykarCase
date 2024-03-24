@@ -18,6 +18,10 @@ Projeyi çalıştırmak için gereksinimleri kurmak için aşağıdaki adımlar�
 
 ` docker install `
 
+Projenin image dosyasını edinmek için aşağıdaki komutu çalıştırın:
+
+` docker pull muberrabulbul/baykar-case:baykarcase `
+
 
 PostgreSQL ve Uygulamayı Yapılandırma
 Projeyi çalıştırmak için PostgreSQL ve uygulamayı yapılandırmanız gerekir. Docker ve docker-compose kullanarak kolayca yapılandırabilirsiniz:
