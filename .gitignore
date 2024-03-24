@@ -6,10 +6,6 @@ __pycache__/
 # C extensions
 *.so
 
-# 
-virtualenv/
-migrations/
-
 # Distribution / packaging
 .Python
 build/
@@ -131,6 +127,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+virtualenv/
+
 
 # Spyder project settings
 .spyderproject
